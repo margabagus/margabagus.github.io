@@ -8,6 +8,7 @@ class ContactForm {
         }
         this.submitBtn = this.form.querySelector('.submit-btn');
         this.setupListeners();
+        this.setupMessageContainer(); // Add message container on init
     }
 
     setupListeners() {
@@ -17,73 +18,73 @@ class ContactForm {
         });
     }
 
+    setupMessageContainer() {
+        // Create message container if it doesn't exist
+        if (!this.form.querySelector('.form-message-container')) {
+            const messageContainer = document.createElement('div');
+            messageContainer.className = 'form-message-container';
+            // Insert after the last form group, before the button
+            const lastFormGroup = this.form.querySelector('.form-group:last-of-type');
+            if (lastFormGroup) {
+                lastFormGroup.after(messageContainer);
+            } else {
+                this.form.insertBefore(messageContainer, this.submitBtn);
+            }
+        }
+    }
+
     async handleSubmit(e) {
-        // Disable button and show loading state
         this.submitBtn.disabled = true;
         this.submitBtn.textContent = 'Mengirim...';
 
         try {
-            const formData = new FormData(this.form);
-            
-            // Add form metadata
-            formData.append('_subject', 'New Contact Form Submission');
-            formData.append('_format', 'plain');
-            
             const response = await fetch('https://formspree.io/f/mnnnqzbo', {
                 method: 'POST',
                 headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/x-www-form-urlencoded'
+                    'Accept': 'application/json'
                 },
-                body: new URLSearchParams(formData)
+                body: new FormData(this.form)
             });
-
-            if (!response.ok) {
-                const errorData = await response.json().catch(() => ({}));
-                throw new Error(errorData.error || 'Server error');
-            }
 
             const data = await response.json();
 
-            if (data.ok) {
-                // Success
+            if (response.ok) {
                 this.showMessage('Pesan berhasil dikirim! Terima kasih.', 'success');
                 this.form.reset();
             } else {
-                throw new Error('Submission failed');
+                throw new Error(data.error || 'Terjadi kesalahan saat mengirim pesan.');
             }
         } catch (error) {
             console.error('Form submission error:', error);
             this.showMessage('Maaf, terjadi kesalahan. Silakan coba lagi.', 'error');
         } finally {
-            // Reset button state
             this.submitBtn.disabled = false;
             this.submitBtn.textContent = 'Kirim Pesan';
         }
     }
 
     showMessage(message, type) {
-        // Create or update message element
-        let messageEl = this.form.querySelector('.form-message');
-        if (!messageEl) {
-            messageEl = document.createElement('div');
-            messageEl.className = 'form-message';
-            this.form.insertBefore(messageEl, this.submitBtn.parentNode);
-        }
-
-        // Set message and styling
-        messageEl.textContent = message;
+        const messageContainer = this.form.querySelector('.form-message-container');
+        const messageEl = document.createElement('div');
         messageEl.className = `form-message ${type}`;
+        messageEl.textContent = message;
 
-        // Add CSS for messages
+        // Clear previous messages
+        messageContainer.innerHTML = '';
+        messageContainer.appendChild(messageEl);
+
+        // Add styles if not already added
         if (!document.querySelector('#form-message-styles')) {
             const style = document.createElement('style');
             style.id = 'form-message-styles';
             style.textContent = `
+                .form-message-container {
+                    margin: 1rem 0;
+                }
                 .form-message {
                     padding: 1rem;
-                    margin-bottom: 1rem;
                     border-radius: 4px;
+                    margin-bottom: 1rem;
                     text-align: center;
                 }
                 .form-message.success {
