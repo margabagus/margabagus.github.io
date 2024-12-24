@@ -2,13 +2,12 @@
 
 class MobileMenu {
     constructor() {
-        // Select elements
         this.button = document.querySelector('.mobile-menu-btn');
         this.nav = document.querySelector('nav ul');
         this.menuBars = this.button.querySelectorAll('span');
+        this.menuItems = document.querySelectorAll('nav ul li a');
         this.isOpen = false;
 
-        // Check if elements exist
         if (!this.button || !this.nav) {
             console.error('Mobile menu elements not found');
             return;
@@ -19,22 +18,36 @@ class MobileMenu {
 
     init() {
         // Toggle menu on button click
-        this.button.addEventListener('click', () => {
+        this.button.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
             this.toggleMenu();
+        });
+
+        // Handle menu item clicks for smooth scrolling
+        this.menuItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = item.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    this.closeMenu();
+                    setTimeout(() => {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }, 300);
+                }
+            });
         });
 
         // Close menu when clicking outside
         document.addEventListener('click', (e) => {
-            if (this.isOpen && !this.button.contains(e.target) && !this.nav.contains(e.target)) {
+            if (this.isOpen && !this.nav.contains(e.target) && !this.button.contains(e.target)) {
                 this.closeMenu();
             }
-        });
-
-        // Close menu when clicking a nav link
-        this.nav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                this.closeMenu();
-            });
         });
     }
 
@@ -42,31 +55,20 @@ class MobileMenu {
         this.isOpen = !this.isOpen;
         this.nav.classList.toggle('show');
         this.button.classList.toggle('active');
-        this.animateButton();
+        document.body.style.overflow = this.isOpen ? 'hidden' : '';
     }
 
     closeMenu() {
-        this.isOpen = false;
-        this.nav.classList.remove('show');
-        this.button.classList.remove('active');
-        this.resetButton();
-    }
-
-    animateButton() {
         if (this.isOpen) {
-            this.menuBars[0].style.transform = 'rotate(-45deg) translate(-5px, 6px)';
-            this.menuBars[1].style.opacity = '0';
-            this.menuBars[2].style.transform = 'rotate(45deg) translate(-5px, -6px)';
-        } else {
-            this.resetButton();
+            this.isOpen = false;
+            this.nav.classList.remove('show');
+            this.button.classList.remove('active');
+            document.body.style.overflow = '';
+            this.menuBars.forEach(bar => {
+                bar.style.transform = '';
+                bar.style.opacity = '';
+            });
         }
-    }
-
-    resetButton() {
-        this.menuBars.forEach(bar => {
-            bar.style.transform = '';
-            bar.style.opacity = '';
-        });
     }
 }
 
