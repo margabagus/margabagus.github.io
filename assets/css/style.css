@@ -98,6 +98,53 @@ nav a:hover {
     transition: 0.3s;
 }
 
+/* About Section Updates */
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Client Logo Slider */
+.client-logos {
+    width: 100%;
+    overflow: hidden;
+    padding: 40px 0;
+    background: #f8f9fa;
+    position: relative;
+}
+
+.logo-slider {
+    display: flex;
+    gap: 40px;
+    animation: slide linear infinite;
+    animation-duration: 20s; /* This will be overwritten by JS */
+    will-change: transform;
+}
+
+.logo-slider img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    filter: sepia(1);
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.logo-slider img:hover {
+    filter: sepia(0);
+    transform: scale(1.1);
+}
+
+@keyframes slide {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
 /* Section Styles */
 section {
     padding: 4rem 2rem;
@@ -274,7 +321,7 @@ section {
 /* Articles Section */
 .articles-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
@@ -369,6 +416,25 @@ footer {
     color: #667eea;
 }
 
+.footer-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-contact-item:hover {
+    color: #667eea;
+}
+
+.footer-contact-item i {
+    width: 20px;
+    text-align: center;
+}
+
 .footer-bottom {
     text-align: center;
     margin-top: 2rem;
@@ -410,21 +476,29 @@ footer {
     right: 20px;
     background: #25D366;
     color: white;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+    width: auto;
+    height: auto;
+    padding: 10px 20px;
+    border-radius: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
     font-size: 1.5rem;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    transition: transform 0.3s;
+    transition: all 0.3s ease;
     z-index: 99;
 }
 
 .whatsapp-float:hover {
     transform: scale(1.1);
+}
+
+.whatsapp-text {
+    margin-right: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    color: white;
 }
 
 /* Utilities */
@@ -464,7 +538,7 @@ footer {
 
     .projects-grid,
     .articles-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .footer-content {
@@ -477,9 +551,11 @@ footer {
     }
 
     .whatsapp-float {
-        width: 40px;
-        height: 40px;
-        font-size: 1.25rem;
+    padding: 8px 16px;
+    }
+
+    .whatsapp-text {
+        font-size: 12px;
     }
 }
 
@@ -495,6 +571,10 @@ footer {
 
     header {
         padding: 2rem 1rem;
+    }
+
+    .articles-grid {
+        grid-template-columns: 1fr;
     }
 
     .project-img,
