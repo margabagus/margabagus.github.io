@@ -225,8 +225,10 @@
         <section id="contact">
             <h2 class="section-title">Hubungi Saya</h2>
             <form class="contact-form" id="contactForm">
-                <input type="hidden" name="_subject" value="Pesan Baru dari Portfolio Website">
-                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_subject" value="New Contact Form Submission">
+                <input type="hidden" name="_format" value="plain">
+                <!-- Anti-spam -->
+                <input type="text" name="_gotcha" style="display:none">
                 
                 <div class="form-group">
                     <label for="name">Nama</label>
@@ -242,9 +244,6 @@
                     <label for="message">Pesan</label>
                     <textarea id="message" name="message" rows="5" required></textarea>
                 </div>
-                
-                <!-- Anti-spam -->
-                <input type="text" name="_gotcha" style="display:none">
                 
                 <button type="submit" class="submit-btn">Kirim Pesan</button>
             </form>
