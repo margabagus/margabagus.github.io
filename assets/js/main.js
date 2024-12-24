@@ -7,29 +7,53 @@ class MobileMenu {
         this.menuBars = this.button.querySelectorAll('span');
         this.isOpen = false;
         
+        if (!this.button || !this.nav) {
+            console.error('Mobile menu elements not found');
+            return;
+        }
+        
         this.init();
     }
 
     init() {
-        this.button.addEventListener('click', () => this.toggleMenu());
+        // Toggle menu on button click
+        this.button.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent event from bubbling
+            this.toggleMenu();
+        });
+
         // Close menu when clicking outside
         document.addEventListener('click', (e) => {
             if (this.isOpen && !e.target.closest('nav')) {
                 this.closeMenu();
             }
         });
+
+        // Prevent menu from closing when clicking inside nav
+        this.nav.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
+        // Close menu when clicking on a nav link
+        this.nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => this.closeMenu());
+        });
     }
 
     toggleMenu() {
         this.isOpen = !this.isOpen;
         this.nav.classList.toggle('show');
+        this.button.classList.toggle('active');
         this.animateButton();
     }
 
     closeMenu() {
-        this.isOpen = false;
-        this.nav.classList.remove('show');
-        this.resetButton();
+        if (this.isOpen) {
+            this.isOpen = false;
+            this.nav.classList.remove('show');
+            this.button.classList.remove('active');
+            this.resetButton();
+        }
     }
 
     animateButton() {

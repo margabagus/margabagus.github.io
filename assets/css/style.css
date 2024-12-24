@@ -96,20 +96,34 @@ nav a:hover {
 
 /* Mobile Menu */
 .mobile-menu-btn {
-    display: none;
+    display: none; /* Hidden by default on desktop */
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0.5rem;
+    padding: 10px;
+    z-index: 1000;
 }
 
 .mobile-menu-btn span {
     display: block;
     width: 25px;
-    height: 3px;
-    background-color: #4a5568;
-    margin: 5px 0;
-    transition: 0.3s;
+    height: 2px;
+    background-color: #333;
+    margin: 6px 0;
+    transition: all 0.3s ease;
+}
+
+/* Animation for hamburger to X */
+.mobile-menu-btn.active span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.mobile-menu-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-btn.active span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
 }
 
 /* About Section Updates */
@@ -550,7 +564,6 @@ footer {
     transform: translateY(-3px);
 }
 
-
 .footer-contact-item {
     display: flex;
     align-items: center;
@@ -674,19 +687,31 @@ footer {
     }
 
     nav ul {
-        display: none;
-        position: absolute;
-        top: 100%;
+        display: none; /* Hidden by default on mobile */
+        position: fixed;
+        top: 60px; /* Adjust based on your header height */
         left: 0;
         right: 0;
         background: white;
+        padding: 20px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         flex-direction: column;
-        padding: 1rem;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        gap: 20px;
+        z-index: 999;
     }
 
     nav ul.show {
         display: flex;
+    }
+
+    nav ul li {
+        width: 100%;
+        text-align: center;
+    }
+
+    nav ul li a {
+        display: block;
+        padding: 10px;
     }
 
     section {
