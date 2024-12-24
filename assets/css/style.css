@@ -737,7 +737,7 @@ footer {
     nav ul li:nth-child(3) { transition-delay: 0.3s; }
     nav ul li:nth-child(4) { transition-delay: 0.4s; }
     nav ul li:nth-child(5) { transition-delay: 0.5s; }
-}
+
      /* Hamburger Animation */
     .mobile-menu-btn.active span:nth-child(1) {
         transform: rotate(-45deg) translate(-5px, 6px);
