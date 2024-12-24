@@ -685,6 +685,9 @@ footer {
         margin: 5px 0;
         transition: all 0.3s ease;
     }
+    nav {
+        background-color: transparent;    
+    }
 
     nav ul {
         display: none;
