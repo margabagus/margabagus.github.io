@@ -2,41 +2,39 @@
 
 class MobileMenu {
     constructor() {
+        // Select elements
         this.button = document.querySelector('.mobile-menu-btn');
         this.nav = document.querySelector('nav ul');
         this.menuBars = this.button.querySelectorAll('span');
         this.isOpen = false;
-        
+
+        // Check if elements exist
         if (!this.button || !this.nav) {
             console.error('Mobile menu elements not found');
             return;
         }
-        
+
         this.init();
     }
 
     init() {
         // Toggle menu on button click
-        this.button.addEventListener('click', (e) => {
-            e.stopPropagation(); // Prevent event from bubbling
+        this.button.addEventListener('click', () => {
             this.toggleMenu();
         });
 
         // Close menu when clicking outside
         document.addEventListener('click', (e) => {
-            if (this.isOpen && !e.target.closest('nav')) {
+            if (this.isOpen && !this.button.contains(e.target) && !this.nav.contains(e.target)) {
                 this.closeMenu();
             }
         });
 
-        // Prevent menu from closing when clicking inside nav
-        this.nav.addEventListener('click', (e) => {
-            e.stopPropagation();
-        });
-
-        // Close menu when clicking on a nav link
+        // Close menu when clicking a nav link
         this.nav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => this.closeMenu());
+            link.addEventListener('click', () => {
+                this.closeMenu();
+            });
         });
     }
 
@@ -48,12 +46,10 @@ class MobileMenu {
     }
 
     closeMenu() {
-        if (this.isOpen) {
-            this.isOpen = false;
-            this.nav.classList.remove('show');
-            this.button.classList.remove('active');
-            this.resetButton();
-        }
+        this.isOpen = false;
+        this.nav.classList.remove('show');
+        this.button.classList.remove('active');
+        this.resetButton();
     }
 
     animateButton() {
@@ -67,9 +63,10 @@ class MobileMenu {
     }
 
     resetButton() {
-        this.menuBars[0].style.transform = 'none';
-        this.menuBars[1].style.opacity = '1';
-        this.menuBars[2].style.transform = 'none';
+        this.menuBars.forEach(bar => {
+            bar.style.transform = '';
+            bar.style.opacity = '';
+        });
     }
 }
 
