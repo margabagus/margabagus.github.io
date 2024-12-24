@@ -73,7 +73,7 @@
         </section
 
         <section class="client-logos">
-            <div class="container">
+            <div class="logo-slider-container">
                 <div class="logo-slider">
                     <img src="assets/images/clients/logo-ako-agriculture.png" alt="AKO Agriculture" loading="lazy">
                     <img src="assets/images/clients/logo-biro-jasa-wisata-jurupiknik.png" alt="Jurupiknik Travel Agent" loading="lazy">
@@ -325,8 +325,12 @@
     <script>
         // Initialize components
         document.addEventListener('DOMContentLoaded', function() {
+            new MobileMenu();
             new ContactForm('contactForm');
             new ArticleManager();
+            new ScrollToTop();
+            new FloatingButtons();
+            new LogoSlider();
         });
     </script>
 </body>

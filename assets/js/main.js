@@ -108,33 +108,56 @@ class FloatingButtons {
 
 class LogoSlider {
     constructor() {
+        this.sliderContainer = document.querySelector('.logo-slider-container');
         this.slider = document.querySelector('.logo-slider');
-        if (!this.slider) return;
+        if (!this.slider || !this.sliderContainer) return;
         this.init();
     }
 
     init() {
-        // Ensure container doesn't overflow
-        this.slider.style.maxWidth = '100%';
-        
-        // Handle visibility change
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                this.slider.style.animationPlayState = 'paused';
-            } else {
-                this.slider.style.animationPlayState = 'running';
-            }
+        // Pause animation on hover
+        this.slider.addEventListener('mouseenter', () => {
+            this.slider.style.animationPlayState = 'paused';
         });
 
-        // Recalculate animation duration based on content width
-        this.updateAnimationDuration();
-        window.addEventListener('resize', () => this.updateAnimationDuration());
+        this.slider.addEventListener('mouseleave', () => {
+            this.slider.style.animationPlayState = 'running';
+        });
+
+        // Handle visibility change
+        document.addEventListener('visibilitychange', () => {
+            this.slider.style.animationPlayState = document.hidden ? 'paused' : 'running';
+        });
+
+        // Check for slider overflow
+        this.checkOverflow();
+        window.addEventListener('resize', () => this.checkOverflow());
     }
 
-    updateAnimationDuration() {
-        const totalWidth = this.slider.scrollWidth / 2; // Divide by 2 because items are cloned
-        const duration = totalWidth / 50; // 50 pixels per second
-        this.slider.style.animationDuration = `${duration}s`;
+    checkOverflow() {
+        // Get the container width
+        const containerWidth = this.sliderContainer.offsetWidth;
+        
+        // Get all original logos (not duplicates)
+        const logos = this.slider.querySelectorAll('img');
+        const logoCount = logos.length / 2; // Divide by 2 because we have duplicates
+        
+        // Calculate total width of original logos
+        let totalWidth = 0;
+        for (let i = 0; i < logoCount; i++) {
+            const logo = logos[i];
+            const style = window.getComputedStyle(logo);
+            const width = logo.offsetWidth +
+                         parseInt(style.marginLeft) +
+                         parseInt(style.marginRight);
+            totalWidth += width;
+        }
+
+        // If total width of logos is less than container, adjust gap
+        if (totalWidth < containerWidth) {
+            const gap = (containerWidth - totalWidth) / (logoCount - 1);
+            this.slider.style.gap = `${gap}px`;
+        }
     }
 }
 
