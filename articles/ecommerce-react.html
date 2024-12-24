@@ -179,14 +179,85 @@ const cartSlice = createSlice({
         </article>
     </main>
 
-    <footer>
-        <!-- Same footer as main page -->
-        <p>&copy; 2024 Nama Anda. All rights reserved.</p>
-        <div class="social-links">
-            <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+<!-- Footer -->
+<footer>
+    <div class="footer-content">
+        <!-- Logo Section -->
+        <div class="footer-logo-section">
+            <img src="assets/images/footer-logo-marga-bagus.png" alt="Marga Bagus Logo">
+            <p class="footer-description">A Professional Digital Freelance Based in Surabaya</p>
         </div>
-    </footer>
+
+        <!-- Services Section -->
+        <div class="footer-services">
+            <h3>Service</h3>
+            <a href="https://api.whatsapp.com/send?phone=6282147979921&text=Hello%20Marga%20I%20want%20to%20">Website Design</a>
+            <a href="https://api.whatsapp.com/send?phone=6282147979921&text=Hello%20Marga%20I%20want%20to%20">Website Development</a>
+            <a href="https://api.whatsapp.com/send?phone=6282147979921&text=Hello%20Marga%20I%20want%20to%20">Website Maintenance</a>
+            <a href="https://api.whatsapp.com/send?phone=6282147979921&text=Hello%20Marga%20I%20want%20to%20">Website Fixing Service</a>
+            <a href="https://api.whatsapp.com/send?phone=6282147979921&text=Hello%20Marga%20I%20want%20to%20">SEO Optimization</a>
+            <a href="https://api.whatsapp.com/send?phone=6282147979921&text=Hello%20Marga%20I%20want%20to%20">Meta Ads</a>
+            <a href="https://api.whatsapp.com/send?phone=6282147979921&text=Hello%20Marga%20I%20want%20to%20">Google Ads</a>
+            <a href="https://api.whatsapp.com/send?phone=6282147979921&text=Hello%20Marga%20I%20want%20to%20">TikTok Ads</a>
+        </div>
+
+        <!-- Grow Up Section -->
+        <div class="footer-grow">
+            <h3>GROW UP</h3>
+            <p>
+                Delivering comprehensive digital solutions—from responsive website development to strategic optimization. Expert implementation of SEO strategies, content management, website maintenance, and targeted advertising across Meta, Google, TikTok, Linkedin, and YouTube platforms to transform your digital presence into measurable success.
+            </p>
+            <div class="footer-social">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="https://github.com/margabagus" target="_blank" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/margabagus/" target="_blank" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://x.com/margabagus" target="_blank" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://www.instagram.com/margabagus/" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>&copy; 2024 Marga Bagus. All rights reserved.</p>
+    </div>
+</footer>
+
+        <!-- Back To Top Button -->
+        <a href="#" class="back-to-top" id="backToTop" aria-label="Kembali ke atas">
+            <i class="fas fa-arrow-up"></i>
+        </a>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/6282147979921?text=Halo,%20Marga%20I%20want%20to" 
+    class="whatsapp-float" 
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Chat on WhatsApp">
+     <span class="whatsapp-text">Chat Now</span>
+     <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- JavaScript -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/form.js"></script>
+    <script src="assets/js/articles.js"></script>
+    <script src="assets/js/logo-slider.js"></script>
+    <script>
+        // Initialize components
+        document.addEventListener('DOMContentLoaded', function() {
+            new ContactForm('contactForm');
+            new ArticleManager();
+        });
+    </script>
 </body>
 </html>

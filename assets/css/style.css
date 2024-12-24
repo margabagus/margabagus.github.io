@@ -153,6 +153,7 @@ nav a:hover {
     display: flex;
     gap: 40px;
     animation: slide linear infinite;
+    max-width: 100%; 
     animation-duration: 20s; /* This will be overwritten by JS */
     will-change: transform;
 }
@@ -588,6 +589,7 @@ footer {
     justify-content: center;
     text-decoration: none;
     opacity: 0;
+    z-index: 1000;
     transition: all 0.3s;
     transform: translateY(100px);
 }
@@ -618,7 +620,7 @@ footer {
     font-size: 1.5rem;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     transition: all 0.3s ease;
-    z-index: 99;
+    z-index: 1000;
 }
 
 .whatsapp-float:hover {
@@ -705,7 +707,9 @@ footer {
 
     .whatsapp-float {
     padding: 10px 18px;
-    }
+    bottom: 20px;
+    right: 20px;
+}
 
     .whatsapp-text {
         font-size: 18px;
@@ -722,6 +726,12 @@ footer {
     .service-arrow {
         width: 32px;
         height: 32px;
+    }
+    .back-to-top {
+        bottom: 80px;
+        right: 20px;
+        width: 35px;
+        height: 35px;
     }
 }
 
@@ -756,5 +766,29 @@ footer {
     .project-img,
     .article-img {
         height: 180px;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr !important; /* Force single column */
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+
+    .project-card {
+        width: 100%;
+    }
+
+    /* Fix logo slider on mobile */
+    .client-logos {
+        padding: 20px 0;
+    }
+
+    .logo-slider {
+        gap: 20px;
+    }
+
+    .logo-slider img {
+        width: 80px;
+        height: 80px;
     }
 }
