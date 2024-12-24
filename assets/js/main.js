@@ -24,8 +24,8 @@ class MobileMenu {
             this.toggleMenu();
         });
 
-        // Handle menu item clicks for smooth scrolling
-        this.menuItems.forEach((item) => {
+        // Handle menu item clicks
+        this.menuItems.forEach(item => {
             item.addEventListener('click', (e) => {
                 e.preventDefault();
                 const targetId = item.getAttribute('href');
@@ -38,8 +38,6 @@ class MobileMenu {
                             behavior: 'smooth',
                             block: 'start'
                         });
-                        // Update URL without scrolling
-                        history.pushState(null, '', targetId);
                     }, 300);
                 }
             });
@@ -58,14 +56,6 @@ class MobileMenu {
         this.nav.classList.toggle('show');
         this.button.classList.toggle('active');
         document.body.style.overflow = this.isOpen ? 'hidden' : '';
-
-        // Add delay to each menu item for animation
-        if (this.isOpen) {
-            const menuItems = this.nav.querySelectorAll('li');
-            menuItems.forEach((item, index) => {
-                item.style.transitionDelay = `${index * 0.1}s`;
-            });
-        }
     }
 
     closeMenu() {
@@ -74,11 +64,6 @@ class MobileMenu {
             this.nav.classList.remove('show');
             this.button.classList.remove('active');
             document.body.style.overflow = '';
-            
-            const menuItems = this.nav.querySelectorAll('li');
-            menuItems.forEach(item => {
-                item.style.transitionDelay = '0s';
-            });
         }
     }
 }
