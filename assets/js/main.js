@@ -24,8 +24,8 @@ class MobileMenu {
             this.toggleMenu();
         });
 
-        // Handle menu item clicks
-        this.menuItems.forEach((item, index) => {
+        // Handle menu item clicks for smooth scrolling
+        this.menuItems.forEach((item) => {
             item.addEventListener('click', (e) => {
                 e.preventDefault();
                 const targetId = item.getAttribute('href');
@@ -38,6 +38,8 @@ class MobileMenu {
                             behavior: 'smooth',
                             block: 'start'
                         });
+                        // Update URL without scrolling
+                        history.pushState(null, '', targetId);
                     }, 300);
                 }
             });
@@ -59,12 +61,9 @@ class MobileMenu {
 
         // Add delay to each menu item for animation
         if (this.isOpen) {
-            this.menuItems.forEach((item, index) => {
-                item.parentElement.style.transitionDelay = `${index * 0.1}s`;
-            });
-        } else {
-            this.menuItems.forEach(item => {
-                item.parentElement.style.transitionDelay = '0s';
+            const menuItems = this.nav.querySelectorAll('li');
+            menuItems.forEach((item, index) => {
+                item.style.transitionDelay = `${index * 0.1}s`;
             });
         }
     }
@@ -76,13 +75,13 @@ class MobileMenu {
             this.button.classList.remove('active');
             document.body.style.overflow = '';
             
-            this.menuItems.forEach(item => {
-                item.parentElement.style.transitionDelay = '0s';
+            const menuItems = this.nav.querySelectorAll('li');
+            menuItems.forEach(item => {
+                item.style.transitionDelay = '0s';
             });
         }
     }
 }
-
 
 class ScrollToTop {
     constructor() {

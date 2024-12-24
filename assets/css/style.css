@@ -86,20 +86,27 @@ nav ul {
     margin: 0 auto;
 }
 
-nav a {
+nav ul li a {
     text-decoration: none;
     color: #4a5568;
     font-weight: 500;
     transition: color 0.3s;
+    padding: 0.5rem 1rem;
 }
 
-nav a:hover {
+nav ul li a:hover {
     color: #667eea;
 }
 
 /* Mobile Menu */
 .mobile-menu-btn {
     display: none; /* Hidden by default on desktop */
+}
+
+/* Adjust header for fixed navigation */
+header {
+    margin-top: 60px; /* Height of nav */
+    padding-top: 4rem;
 }
 
 /* About Section Updates */
@@ -687,26 +694,14 @@ footer {
         top: 0;
         left: 0;
         right: 0;
-        bottom: 0;
-        width: 100%;
         height: 100vh;
         background-color: rgba(255, 255, 255, 0.98);
         flex-direction: column;
         justify-content: center;
         align-items: center;
         gap: 2rem;
-        margin: 0;
-        padding: 1rem;
+        padding: 2rem;
         z-index: 1001;
-        backdrop-filter: blur(5px);
-    }
-
-
-    nav {
-        padding: 1rem;
-        background: transparent;
-        box-shadow: none;
-    }
     }
 
     nav ul.show {
@@ -733,16 +728,17 @@ footer {
         color: #333;
     }
 
+    nav ul li {
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    
+    nav ul li:nth-child(1) { transition-delay: 0.1s; }
+    nav ul li:nth-child(2) { transition-delay: 0.2s; }
+    nav ul li:nth-child(3) { transition-delay: 0.3s; }
+    nav ul li:nth-child(4) { transition-delay: 0.4s; }
+    nav ul li:nth-child(5) { transition-delay: 0.5s; }
+}
      /* Hamburger Animation */
-     .mobile-menu-btn.active {
-        background: transparent;
-        box-shadow: none;
-    }
-
-    .mobile-menu-btn.active span {
-        background-color: #333;
-    }
-
     .mobile-menu-btn.active span:nth-child(1) {
         transform: rotate(-45deg) translate(-5px, 6px);
     }
@@ -754,9 +750,11 @@ footer {
     .mobile-menu-btn.active span:nth-child(3) {
         transform: rotate(45deg) translate(-5px, -6px);
     }
-    /* Adjust other elements to prevent overlap */
+
+    /* Adjust header for mobile */
     header {
-        padding-top: 80px; /* Add space for fixed nav */
+        margin-top: 0;
+        padding-top: 4rem;
     }
 
     section {
