@@ -161,7 +161,7 @@ nav a:hover {
     width: 100px;
     height: 100px;
     object-fit: contain;
-    filter: sepia(1);
+    filter: grayscale(1);
     transition: all 0.3s ease;
     flex-shrink: 0;
 }
@@ -448,6 +448,7 @@ section {
     max-width: 1200px;
     margin: 0 auto;
     padding: 4rem 2rem;
+    background-color: #0c0f15;
 }
 
 .footer-logo-section img {
@@ -456,7 +457,7 @@ section {
 }
 
 .footer-description {
-    color: #a0aec0;
+    color: #dedede;
     margin-bottom: 2rem;
     line-height: 1.6;
 }
@@ -473,7 +474,7 @@ section {
 }
 
 .footer-services a {
-    color: #a0aec0;
+    color: #dedede;
     text-decoration: none;
     transition: color 0.3s;
 }
