@@ -666,6 +666,8 @@ footer {
     }
 
     .mobile-menu-btn {
+        background-color: whitesmoke;
+        border-radius: 30px;
         display: block;
         position: fixed;
         right: 1rem;
@@ -686,7 +688,9 @@ footer {
         transition: all 0.3s ease;
     }
     nav {
-        background-color: transparent;    
+        background-color: transparent;
+        box-shadow: none;
+
     }
 
     nav ul {
