@@ -506,7 +506,17 @@ footer {
     display: none;
 }
 
+
 /* Responsive Design */
+
+@media (max-width: 1024px) {
+    .articles-grid {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 1rem;
+    }
+}
+
+
 @media (max-width: 768px) {
     html {
         font-size: 14px;
@@ -556,6 +566,16 @@ footer {
 
     .whatsapp-text {
         font-size: 12px;
+    }
+}
+
+@media (max-width: 640px) {
+    .articles-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .article-img {
+        height: 180px;
     }
 }
 
