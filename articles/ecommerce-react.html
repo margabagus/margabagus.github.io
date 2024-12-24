@@ -1,0 +1,192 @@
+<!-- articles/ecommerce-react.html -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membangun E-commerce dengan React dan Node.js - Portfolio Nama Anda</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        /* Specific styling for article pages */
+        .article-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .article-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .article-metadata {
+            color: #666;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .article-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+
+        .article-content {
+            line-height: 1.8;
+        }
+
+        .article-content h2 {
+            margin: 2rem 0 1rem;
+            color: #2d3748;
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .code-block {
+            background: #f7fafc;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <!-- Same navigation as main page -->
+        <ul>
+            <li><a href="../index.html#about">Tentang</a></li>
+            <li><a href="../index.html#projects">Proyek</a></li>
+            <li><a href="../index.html#articles">Artikel</a></li>
+            <li><a href="../index.html#contact">Kontak</a></li>
+        </ul>
+    </nav>
+
+    <main class="article-container">
+        <article>
+            <header class="article-header">
+                <h1>Membangun E-commerce dengan React dan Node.js</h1>
+                <div class="article-metadata">
+                    <span class="date">Dipublikasikan: 21 December 2024</span>
+                    <span class="author">Oleh: Nama Anda</span>
+                </div>
+            </header>
+
+            <img src="../assets/images/article-images/ecommerce.jpg" alt="E-commerce Project Screenshot" class="article-image">
+
+            <div class="article-content">
+                <h2>Latar Belakang Proyek</h2>
+                <p>
+                    Dalam artikel ini, saya akan berbagi pengalaman dalam membangun platform e-commerce 
+                    menggunakan React untuk frontend dan Node.js untuk backend. Proyek ini adalah hasil 
+                    kolaborasi dengan tim 3 orang selama 4 bulan pengembangan.
+                </p>
+
+                <h2>Teknologi yang Digunakan</h2>
+                <ul>
+                    <li>Frontend: React.js, Redux, Tailwind CSS</li>
+                    <li>Backend: Node.js, Express</li>
+                    <li>Database: MongoDB</li>
+                    <li>Payment Gateway: Midtrans</li>
+                    <li>Deployment: AWS</li>
+                </ul>
+
+                <h2>Implementasi Fitur Utama</h2>
+                <p>
+                    Salah satu tantangan utama adalah mengimplementasikan sistem keranjang belanja 
+                    yang real-time. Berikut adalah potongan kode implementasi menggunakan Redux:
+                </p>
+
+                <div class="code-block">
+                    <pre><code>
+// cartSlice.js
+import { createSlice } from '@reduxjs/toolkit';
+
+const cartSlice = createSlice({
+    name: 'cart',
+    initialState: {
+        items: [],
+        total: 0
+    },
+    reducers: {
+        addItem: (state, action) => {
+            state.items.push(action.payload);
+            state.total += action.payload.price;
+        },
+        // ... other reducers
+    }
+});
+                    </code></pre>
+                </div>
+
+                <h2>Tantangan dan Solusi</h2>
+                <p>
+                    Beberapa tantangan utama yang kami hadapi selama pengembangan:
+                </p>
+                <ol>
+                    <li>
+                        <strong>Performa Loading:</strong> Implementasi lazy loading dan image 
+                        optimization untuk mempercepat initial loading
+                    </li>
+                    <li>
+                        <strong>State Management:</strong> Penggunaan Redux untuk mengelola state 
+                        aplikasi yang kompleks
+                    </li>
+                    <li>
+                        <strong>Payment Integration:</strong> Integrasi dengan payment gateway 
+                        dan handling berbagai skenario pembayaran
+                    </li>
+                </ol>
+
+                <h2>Hasil dan Pembelajaran</h2>
+                <p>
+                    Setelah 4 bulan pengembangan, platform berhasil diluncurkan dengan metrics:
+                </p>
+                <ul>
+                    <li>Loading time di bawah 3 detik</li>
+                    <li>98% success rate untuk transaksi pembayaran</li>
+                    <li>Peningkatan konversi sebesar 25%</li>
+                </ul>
+
+                <h2>Kesimpulan</h2>
+                <p>
+                    Proyek ini memberikan banyak pembelajaran berharga, terutama dalam hal:
+                </p>
+                <ul>
+                    <li>Pentingnya arsitektur yang scalable</li>
+                    <li>Optimasi performa frontend</li>
+                    <li>Handling edge cases dalam payment flow</li>
+                    <li>Kolaborasi tim yang efektif</li>
+                </ul>
+
+                <a href="../index.html#articles" class="back-link">← Kembali ke Artikel</a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <!-- Same footer as main page -->
+        <p>&copy; 2024 Nama Anda. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+        </div>
+    </footer>
+</body>
+</html>
