@@ -666,7 +666,7 @@ footer {
     }
 
     .mobile-menu-btn {
-        background-color: whitesmoke;
+        background: whitesmoke;
         border-radius: 30px;
         display: block;
         position: fixed;
@@ -677,6 +677,7 @@ footer {
         cursor: pointer;
         padding: 10px;
         z-index: 1002;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     .mobile-menu-btn span {
